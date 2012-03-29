@@ -1,3 +1,6 @@
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
 #define MAX_HEALTH 5
 #define DEFAULT_LOCATION 0
 
@@ -6,6 +9,8 @@
 #define RIGHT 2;
 #define UP 3;
 
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
 int playerHealth;
 int enemyHealth;
 int playerDefense;
@@ -13,7 +18,10 @@ int numberOfEnemiesDefeated;
 
 void setup()
 {
-  
+  lcd.init();
+  lcd.clear();
+  lcd.backlight();
+  lcd.print("Initializing...");
 }
 
 void loop() // New Game
@@ -23,63 +31,86 @@ void loop() // New Game
   enemyHealth = MAX_HEALTH;
   numberOfEnemiesDefeated = 0;
   
+  welcome();
+  
   while (playerHealth > 0) // Fight a new enemy
   {
     // Create a new enemy
-    String challengerMessage = " wild Thrak appears. UP for sword thrust, DOWN for parry, LEFT or RIGHT for slash.";
-    if (numberOfEnemiesDefeated == 0)
-      challengerMessage = "A" + challengerMessage;
-    else
-      challengerMessage = "Another" + challengerMessage;
-    
-    lcdOutput(challengerMessage);
-    
-    // Fight one round
-    while (bothStillAlive())
+    enemyHealth = MAX_HEALTH;
+    lcdOutput("Finding ememy...", "");
+    for(int i = 0; i < 16; i++)
     {
-      playerDefense = 0;
+      lcd.setCursor(i, 1);
+      lcd.print("*");
+      delay(175);
+    }
+    
+    lcdOutput("Found: ");
+    delay(1000);
+    lcd.print("Killzoid.");
+    delay(2000);
+    lcd.setCursor(0,1);
+    lcd.print(" Engage?  ");
+    delay(500);
+    lcd.print("(Y/N) ");
+    if (getApprovalFromUser())
+    {
+      // Fight one round
+      while (bothStillAlive())
+      {
+        playerDefense = 0;
       
-      if (bothStillAlive())
-        playerAttack(); // Player attacks
+        if (bothStillAlive())
+          playerAttack(); // Player attacks
       
-      if (bothStillAlive())
-        enemyAttack(); // Enemy attacks
+        if (bothStillAlive())
+          enemyAttack(); // Enemy attacks
       
-      if (enemyHealth <= 0)
-        numberOfEnemiesDefeated++;
+        if (enemyHealth <= 0)
+          numberOfEnemiesDefeated++;
+      }
     }
   }
   
   endGame();
 }
 
+void welcome()
+{
+  lcdOutput("    Welcome!    ", " -------------- ");
+  delay(3000);
+  lcdOutput(" Push stick UP, ", " LEFT, or RIGHT ");
+  delay(2000);
+  lcdOutput("to attack. Push", "DOWN to defend.");
+  delay(3000);
+  lcd.clear();
+  delay(2000);
+}
+
 void endGame()
 {
   if (playerHealth > 0) // WIN!
   {
-    lcdOutput("You have defeated all " + (String)numberOfEnemiesDefeated + " enemies!");
+    
   }
   
   else // LOSE!
   {
-    lcdOutput("You died--GAME OVER. " + (String)numberOfEnemiesDefeated + " enemies defeated.");
+    lcdOutput("   You died...  ", "   GAME OVER    ");
+    delay(2000);
+    lcdOutput("  You defeated  ", "   " + (String)numberOfEnemiesDefeated + " monsters.  ");
   }
 }
 
 int playerAttack()
 {
-  int joyStickPosition = getJoyStickPosition();
-  
-  if (joyStickPosition == UP)
-    return 4;
-  if (joyStickPosition == LEFT)
-    return 2;
-  if (joyStickPosition == RIGHT)
-    return 3;
-  else
+  switch (getJoyStickPosition())
   {
-    playerDefense = 4;
-    return 0;
+    case 3:
+      return 4;
+    case 0:
+      playerDefense = 4;
+      return 0;
   }
 }
 
@@ -98,7 +129,23 @@ int getJoyStickPosition()
   // Wait for joystick to be moved
 }
 
-void lcdOutput(String message)
+boolean getApprovalFromUser()
 {
-  // Not yet written
+  return true;
+}
+
+void lcdOutput(String line)
+{
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print(line);
+}
+
+void lcdOutput(String firstLine, String secondLine)
+{
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print(firstLine);
+  lcd.setCursor(0,1);
+  lcd.print(secondLine);
 }
