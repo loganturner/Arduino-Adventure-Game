@@ -3,9 +3,6 @@
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
-int playerHealth;
-int enemyHealth;
-int playerDefense;
 int numberOfEnemiesDefeated;
 
 void setup()
@@ -69,7 +66,7 @@ void loop() // New Game
 
 boolean bothStillAlive()
 {
-  return ((playerHealth > 0) && (enemyHealth > 0));
+  return (playerIsAlive() && enemyIsAlive());
 }
 
 

@@ -1,3 +1,11 @@
+int playerHealth;
+int playerDefense;
+
+boolean playerIsAlive()
+{
+  return playerHealth > 0;
+}
+
 void playerTurn()
 {
   
