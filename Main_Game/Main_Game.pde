@@ -1,14 +1,6 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
-#define MAX_HEALTH 5
-#define DEFAULT_LOCATION 0
-
-#define DOWN 0;
-#define LEFT 1;
-#define RIGHT 2;
-#define UP 3;
-
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 int playerHealth;
@@ -75,77 +67,9 @@ void loop() // New Game
   endGame();
 }
 
-void welcome()
-{
-  lcdOutput("    Welcome!    ", " -------------- ");
-  delay(3000);
-  lcdOutput(" Push stick UP, ", " LEFT, or RIGHT ");
-  delay(2000);
-  lcdOutput("to attack. Push", "DOWN to defend.");
-  delay(3000);
-  lcd.clear();
-  delay(2000);
-}
-
-void endGame()
-{
-  if (playerHealth > 0) // WIN!
-  {
-    
-  }
-  
-  else // LOSE!
-  {
-    lcdOutput("   You died...  ", "   GAME OVER    ");
-    delay(2000);
-    lcdOutput("  You defeated  ", "   " + (String)numberOfEnemiesDefeated + " monsters.  ");
-  }
-}
-
-int playerAttack()
-{
-  switch (getJoyStickPosition())
-  {
-    case 3:
-      return 4;
-    case 0:
-      playerDefense = 4;
-      return 0;
-  }
-}
-
-int enemyAttack()
-{
-  // Not yet written
-}
-
 boolean bothStillAlive()
 {
   return ((playerHealth > 0) && (enemyHealth > 0));
 }
 
-int getJoyStickPosition()
-{
-  // Wait for joystick to be moved
-}
 
-boolean getApprovalFromUser()
-{
-  return true;
-}
-
-void lcdOutput(String line)
-{
-  lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print(line);
-}
-
-void lcdOutput(String firstLine, String secondLine)
-{
-  lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print(firstLine);
-  lcd.setCursor(0,1);
-  lcd.print(secondLine);
-}
