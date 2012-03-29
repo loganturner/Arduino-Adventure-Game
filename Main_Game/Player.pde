@@ -1,5 +1,15 @@
+
+private:
+
 int playerHealth;
 int playerDefense;
+
+public:
+
+void newPlayer()
+{
+  
+}
 
 boolean playerIsAlive()
 {
@@ -31,3 +41,4 @@ int playerAttack()
       enemyHealth -= 2;
   }
 }
+

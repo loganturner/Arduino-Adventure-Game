@@ -1,3 +1,4 @@
+
 void lcdOutput(String line)
 {
   lcd.clear();
@@ -13,6 +14,8 @@ void lcdOutput(String firstLine, String secondLine)
   lcd.setCursor(0,1);
   lcd.print(secondLine);
 }
+
+
 
 void welcome()
 {
@@ -44,3 +47,4 @@ void endGame()
     delay(2000);
   }
 }
+

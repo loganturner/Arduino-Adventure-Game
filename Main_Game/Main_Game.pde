@@ -16,16 +16,15 @@ void setup()
 void loop() // New Game
 {
   // New Player
-  playerHealth = MAX_HEALTH;
-  enemyHealth = MAX_HEALTH;
+  newPlayer();
   numberOfEnemiesDefeated = 0;
   
   welcome();
   
-  while (playerHealth > 0) // Fight a new enemy
+  while (playerIsAlive) // Fight a new enemy
   {
     // Create a new enemy
-    enemyHealth = MAX_HEALTH;
+    newEnemy();
     lcdOutput("Finding ememy...", "");
     for(int i = 0; i < 16; i++)
     {
@@ -47,15 +46,13 @@ void loop() // New Game
       // Fight one round
       while (bothStillAlive())
       {
-        playerDefense = 0;
+        if (bothStillAlive())
+          playerTurn(); // Player attacks
       
         if (bothStillAlive())
-          playerAttack(); // Player attacks
+          enemyTurn(); // Enemy attacks
       
-        if (bothStillAlive())
-          enemyAttack(); // Enemy attacks
-      
-        if (enemyHealth <= 0)
+        if (!enemyIsAlive())
           numberOfEnemiesDefeated++;
       }
     }

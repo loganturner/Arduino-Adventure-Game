@@ -1,5 +1,14 @@
+
+private:
+const int MAX_HEALTH = 5;
 int enemyHealth;
 int enemyDefense;
+
+Public:
+public void newEnemy()
+{
+  enemyHealth = MAX_HEALTH;
+}
 
 boolean enemyIsAlive()
 {
@@ -21,3 +30,4 @@ void receiveAttack(int power)
   if (enemyHealth < 0)
     enemyHealth = 0;
 }
+
