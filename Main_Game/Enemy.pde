@@ -1,11 +1,16 @@
+const int KILLZOID = 0;
+const int KILLZOID_HEALTH = 5;
+const String KILLZOID_NAME = "Killzoid";
 
-private:
-const int MAX_HEALTH = 5;
-int enemyHealth;
-int enemyDefense;
+const int DODO = 1;
+const int DODO_HEALTH = 2;
+const String DODO_NAME = "Dodo";
 
-Public:
-public void newEnemy()
+String enemyName = "";
+int enemyHealth = 0;
+int enemyDefense = 0;
+
+void newRandomEnemy()
 {
   enemyHealth = MAX_HEALTH;
 }
@@ -17,8 +22,8 @@ boolean enemyIsAlive()
 
 int enemyTurn()
 {
-  
-  playerHealth -= (3 - playerDefense);
+  int power = getEnemyAttack();
+  playerDefend(power);
 }
 
 void receiveAttack(int power)

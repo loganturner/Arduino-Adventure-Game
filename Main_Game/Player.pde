@@ -18,27 +18,24 @@ boolean playerIsAlive()
 
 void playerTurn()
 {
-  
+  int power = getPlayerAttack();
+  enemyDefend(power);
 }
 
-int playerAttack()
+int getPlayerAttack()
 {
   playerDefense = 0;
   
-  lcdOutput("Your turn!(U)   ", "       (L)(D)(R)");
-  delay(500);
-  switch (getJoyStickPosition())
-  {
-    case 0:
-      enemyHealth -= 4;
-      break;
-    case 1:
+  int p = getJoyStickPosition();
+    if (p == UP)
+      return 4;
+    if (p == DOWN) {
       playerDefense = 2;
-      break;
-    case 2:
-      enemyHealth -= 2;
-    case 3:
-      enemyHealth -= 2;
+      return 0; }
+    if (p == LEFT)
+      return 2;
+    if (p == RIGHT)
+      return 2;
   }
 }
 

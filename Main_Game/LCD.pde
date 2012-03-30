@@ -15,7 +15,37 @@ void lcdOutput(String firstLine, String secondLine)
   lcd.print(secondLine);
 }
 
+void findNewEnemyMessage(String name, int health)
+{
+  newEnemy();
+    lcdOutput("Finding ememy...", "");
+    for(int i = 0; i < 16; i++)
+    {
+      lcd.setCursor(i, 1);
+      lcd.print("*");
+      delay(175);
+    }
+    
+    lcdOutput("Found ");
+    delay(1000);
+    lcd.print("Lv" + (String)health + " " + name);
+    delay(2000);
+    lcd.setCursor(0,1);
+    lcd.print(" Engage?  ");
+    delay(500);
+    lcd.print("(Y/N) ");
+}
 
+void ignoreEnemyMessage()
+{
+  lcdOutput("  You ignored   ", "    that one.   ")
+  delay(2000);
+}
+
+void playerAttackMessage()
+{
+  lcdOutput("Attack!   (U)   ", "       (L)(D)(R)");
+}
 
 void welcome()
 {

@@ -24,41 +24,36 @@ void loop() // New Game
   while (playerIsAlive) // Fight a new enemy
   {
     // Create a new enemy
-    newEnemy();
-    lcdOutput("Finding ememy...", "");
-    for(int i = 0; i < 16; i++)
-    {
-      lcd.setCursor(i, 1);
-      lcd.print("*");
-      delay(175);
-    }
-    
-    lcdOutput("Found: ");
-    delay(1000);
-    lcd.print("Killzoid.");
-    delay(2000);
-    lcd.setCursor(0,1);
-    lcd.print(" Engage?  ");
-    delay(500);
-    lcd.print("(Y/N) ");
+    newRandomEnemy();
     if (getApprovalFromUser())
     {
-      // Fight one round
-      while (bothStillAlive())
-      {
-        if (bothStillAlive())
-          playerTurn(); // Player attacks
-      
-        if (bothStillAlive())
-          enemyTurn(); // Enemy attacks
-      
-        if (!enemyIsAlive())
-          numberOfEnemiesDefeated++;
-      }
+      fightRound();
     }
+    else
+    ignoreEnemy();
   }
   
   endGame();
+}
+
+void fightRound()
+{
+   while (bothStillAlive())
+   {
+     if (bothStillAlive())
+       playerTurn(); // Player attacks
+      
+     if (bothStillAlive())
+       enemyTurn(); // Enemy attacks
+      
+     if (!enemyIsAlive())
+       numberOfEnemiesDefeated++;
+   }
+}
+
+void ignoreEnemy()
+{
+  ignoreEnemyMessage();
 }
 
 boolean bothStillAlive()
