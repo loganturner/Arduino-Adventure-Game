@@ -42,8 +42,14 @@ int getEnemyAttack()
 void enemyDefend(int power)
 {
   int damage = power - enemyDefense;
+  enemyHealth -= damage;
+  if (enemyHealth < 0)
+    enemyHealth = 0;
+    
+  enemyDamageMessage(damage);
   
-  
+  if (!enemyIsAlive)
+    enemyDefeatedMessage();
   enemyDefense = 0;
 }
 

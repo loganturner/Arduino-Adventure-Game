@@ -36,7 +36,7 @@ int getPlayerAttack()
       return 2;
 }
 
-void playerDefend()
+void playerDefend(int power)
 {
   
 }

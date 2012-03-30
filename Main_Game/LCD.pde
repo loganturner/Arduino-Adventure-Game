@@ -17,7 +17,6 @@ void lcdOutput(String firstLine, String secondLine)
 
 void findNewEnemyMessage(String name, int health)
 {
-  newEnemy();
     lcdOutput("Finding ememy...", "");
     for(int i = 0; i < 16; i++)
     {
@@ -38,7 +37,7 @@ void findNewEnemyMessage(String name, int health)
 
 void enemyIgnoredMessage()
 {
-  lcdOutput("  You ignored   ", "    that one.   ")
+  lcdOutput("  You ignored   ", "    that one.   ");
   delay(2000);
 }
 
@@ -50,13 +49,14 @@ void playerAttackMessage()
 
 void enemyDamageMessage(int damage)
 {
-  lcdOutput(" The enemy took ", "   " + (String)damage + " damage.   ")
+  lcdOutput(" The enemy took ", "   " + (String)damage + " damage.   ");
   delay(2000);
 }
 
 void enemyDefeatedMessage()
 {
-  lcdOutput(" This " + enemyName, "    is dead.    ")
+  lcdOutput(" This " + enemyName, "    is dead.    ");
+  delay(2000);
 }
 
 void welcomeMessage()
@@ -71,22 +71,14 @@ void welcomeMessage()
   delay(2000);
 }
 
-void endGame()
+void endGameMessage(number)
 {
-  if (playerHealth > 0) // WIN!
-  {
-    
-  }
-  
-  else // LOSE!
-  {
     lcdOutput("   You died...  ", "   GAME OVER    ");
     delay(2000);
-    lcdOutput("  You defeated  ", "   " + (String)numberOfEnemiesDefeated + " monsters.  ");
+    lcdOutput("  You defeated  ", "   " + (String)number + " monsters.  ");
     delay(2000);
     getApprovalFromUser();
     lcd.clear();
     delay(2000);
-  }
 }
 
