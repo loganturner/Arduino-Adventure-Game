@@ -10,12 +10,12 @@ void newRandomEnemy()
     case 0:
       enemyName = "Dodo";
       enemyHealth = 2;
-      enemyMaxAttack = 1;
+      enemyMaxAttack = 2;
       break;
     case 1:
-      enemyName = "Killzoid";
+      enemyName = "Kilzoid";
       enemyHealth = 5;
-      enemyMaxAttack = 2;
+      enemyMaxAttack = 5;
       break;
   }
   
@@ -42,6 +42,8 @@ int getEnemyAttack()
 void enemyDefend(int power)
 {
   int damage = power - enemyDefense;
+  if (damage < 0)
+    damage = 0;
   enemyHealth -= damage;
   if (enemyHealth < 0)
     enemyHealth = 0;

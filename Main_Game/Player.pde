@@ -25,6 +25,9 @@ int getPlayerAttack()
   playerAttackMessage();
   
   int p = getJoyStickPosition();
+  
+  playerAttackDescription(p);
+  
     if (p == UP)
       return 4;
     if (p == DOWN) {
@@ -38,7 +41,20 @@ int getPlayerAttack()
 
 void playerDefend(int power)
 {
+  int damage = power - playerDefense;
+  if (damage < 0)
+    damage = 0;
+  playerHealth -= damage;
+  if (playerHealth < 0)
+    playerHealth = 0;
+    
+  playerDamageMessage(damage);
   
+  if (!playerIsAlive())
+    playerDefeatedMessage();
+  else
+    playerHealthMessage(playerHealth);
+  playerDefense = 0;
 }
 
 
