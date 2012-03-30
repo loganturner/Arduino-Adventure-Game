@@ -35,7 +35,7 @@ void findNewEnemyMessage(String name, int health)
     lcdOutput("");
     delay(1000);
     lcd.print("Lv. " + (String)health + " \"" + name + "\"");
-    delay(1000);
+    newEnemyTone();
     lcd.setCursor(0,1);
     lcd.print("Engage?   ");
     lcd.print("(Y/N) ");

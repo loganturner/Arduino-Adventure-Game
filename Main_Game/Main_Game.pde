@@ -14,6 +14,9 @@ void setup()
 
 void loop() // New Game
 {
+  initLED();
+  initBuzzer();
+  
   startGameMessage();
   
   newPlayer();

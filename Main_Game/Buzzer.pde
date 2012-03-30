@@ -94,6 +94,11 @@
 
 #define BUZZER 8
 
+void initBuzzer()
+{
+  noTone(BUZZER);
+}
+
 void openingTone()
 {
 int melody[] = {
@@ -114,10 +119,30 @@ int noteDurations[] = {
   }
 }
 
+void newEnemyTone()
+{
+int melody[] = {
+  NOTE_C6, NOTE_C6, NOTE_A5, NOTE_A5, NOTE_AS5, NOTE_AS5};
+
+int noteDurations[] = {
+  6, 6, 6, 6, 6, 6};
+  
+  for (int thisNote = 0; thisNote < 6; thisNote++) {
+
+    int noteDuration = 1000/noteDurations[thisNote];
+    tone(BUZZER, melody[thisNote],noteDuration);
+    
+    int pauseBetweenNotes = noteDuration * 1.30;
+    delay(pauseBetweenNotes);
+    
+    noTone(BUZZER);
+  }
+}
+
 void winTone()
 {
 int melody[] = {
-  NOTE_G6, NOTE_G6, NOTE_C7};
+  NOTE_G6, NOTE_G6, NOTE_C6};
 
 int noteDurations[] = {
   2, 6, 1};
@@ -161,7 +186,7 @@ int noteDurations[] = {
 void failureTone()
 {
 int melody[] = {
-  NOTE_A6, NOTE_E6, NOTE_C6, NOTE_A5};
+  NOTE_E6, NOTE_C6, NOTE_E5, NOTE_A5};
 
 int noteDurations[] = {
   2, 2, 2, 1};

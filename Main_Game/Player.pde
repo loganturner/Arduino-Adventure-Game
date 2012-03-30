@@ -56,7 +56,10 @@ void playerDefend(int power)
     lossTone();
   }
   else
+  {
+    healthWarning(playerHealth);
     playerHealthMessage(playerHealth);
+  }
   playerDefense = 0;
 }
 
