@@ -32,12 +32,15 @@ int getJoyStickPosition()
     thisPercent = getPercent(UP);
     for (i = 0; i < 4; i++)
     {
+      thisPercent = getPercentTilt(i);
       if (thisPercent > highestPercent)
       {
         highestPercent = thisPercent;
         highestDirection = i;
       }
     }
+    if (highestPercent > TILT_THRESHOLD)
+      return highestDirection;
   }
 }
 
@@ -52,6 +55,6 @@ double getPercentTilt(int arrow)
   if (arrow == RIGHT)
     return -1 * getPercentTilt(LEFT);
   
-  else return 0;
+  else return 0.0;
 }
 

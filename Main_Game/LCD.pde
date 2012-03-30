@@ -36,7 +36,7 @@ void findNewEnemyMessage(String name, int health)
     lcd.print("(Y/N) ");
 }
 
-void ignoreEnemyMessage()
+void enemyIgnoredMessage()
 {
   lcdOutput("  You ignored   ", "    that one.   ")
   delay(2000);
@@ -45,9 +45,21 @@ void ignoreEnemyMessage()
 void playerAttackMessage()
 {
   lcdOutput("Attack!   (U)   ", "       (L)(D)(R)");
+  delay(500);
 }
 
-void welcome()
+void enemyDamageMessage(int damage)
+{
+  lcdOutput(" The enemy took ", "   " + (String)damage + " damage.   ")
+  delay(2000);
+}
+
+void enemyDefeatedMessage()
+{
+  lcdOutput(" This " + enemyName, "    is dead.    ")
+}
+
+void welcomeMessage()
 {
   lcdOutput("    Welcome!    ", "  ------------  ");
   delay(3000);

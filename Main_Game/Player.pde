@@ -1,14 +1,10 @@
-
-private:
-
-int playerHealth;
-int playerDefense;
-
-public:
+int playerHealth = 0;
+int playerDefense = 0;
 
 void newPlayer()
 {
-  
+  playerHealth = 10;
+  welcomeMessage();
 }
 
 boolean playerIsAlive()
@@ -18,6 +14,7 @@ boolean playerIsAlive()
 
 void playerTurn()
 {
+  playerDefense = 0;
   int power = getPlayerAttack();
   enemyDefend(power);
 }
@@ -25,6 +22,7 @@ void playerTurn()
 int getPlayerAttack()
 {
   playerDefense = 0;
+  playerAttackMessage();
   
   int p = getJoyStickPosition();
     if (p == UP)
@@ -36,6 +34,11 @@ int getPlayerAttack()
       return 2;
     if (p == RIGHT)
       return 2;
-  }
 }
+
+void playerDefend()
+{
+  
+}
+
 

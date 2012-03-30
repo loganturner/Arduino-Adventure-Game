@@ -15,13 +15,10 @@ void setup()
 
 void loop() // New Game
 {
-  // New Player
   newPlayer();
   numberOfEnemiesDefeated = 0;
   
-  welcome();
-  
-  while (playerIsAlive) // Fight a new enemy
+  while (playerIsAlive()) // Fight a new enemy
   {
     // Create a new enemy
     newRandomEnemy();
@@ -53,7 +50,7 @@ void fightRound()
 
 void ignoreEnemy()
 {
-  ignoreEnemyMessage();
+  enemyIgnoredMessage();
 }
 
 boolean bothStillAlive()

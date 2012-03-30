@@ -1,18 +1,25 @@
-const int KILLZOID = 0;
-const int KILLZOID_HEALTH = 5;
-const String KILLZOID_NAME = "Killzoid";
-
-const int DODO = 1;
-const int DODO_HEALTH = 2;
-const String DODO_NAME = "Dodo";
-
 String enemyName = "";
 int enemyHealth = 0;
+int enemyMaxAttack = 0;
 int enemyDefense = 0;
 
 void newRandomEnemy()
 {
-  enemyHealth = MAX_HEALTH;
+  switch ((int)random(0, 2))
+  {
+    case 0:
+      enemyName = "Dodo";
+      enemyHealth = 2;
+      enemyMaxAttack = 1;
+      break;
+    case 1:
+      enemyName = "Killzoid";
+      enemyHealth = 5;
+      enemyMaxAttack = 2;
+      break;
+  }
+  
+  findNewEnemyMessage(enemyName, enemyHealth);
 }
 
 boolean enemyIsAlive()
@@ -20,19 +27,23 @@ boolean enemyIsAlive()
   return enemyHealth > 0;
 }
 
-int enemyTurn()
+void enemyTurn()
 {
+  enemyDefense = 0;
   int power = getEnemyAttack();
   playerDefend(power);
 }
 
-void receiveAttack(int power)
+int getEnemyAttack()
 {
-  if (power > enemyDefense)
-    
-  enemyHealth -= (power - ;
+  return (int)random(0, enemyMaxAttack + 1);
+}
+
+void enemyDefend(int power)
+{
+  int damage = power - enemyDefense;
   
-  if (enemyHealth < 0)
-    enemyHealth = 0;
+  
+  enemyDefense = 0;
 }
 
