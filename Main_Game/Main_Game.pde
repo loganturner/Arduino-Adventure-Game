@@ -32,6 +32,7 @@ void loop() // New Game
   }
   
   endGameMessage();
+  failureTone();
   endScoreMessage();
   lcd.clear();
   delay(2000);

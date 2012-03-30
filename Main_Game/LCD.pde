@@ -90,7 +90,6 @@ void playerHealthMessage(int health)
 void playerDefeatedMessage()
 {
   lcdOutput("    Oh noes--   ", "    You die!   ");
-  delay(3000);
 }
 
 void enemyDamageMessage(int damage)
@@ -102,13 +101,13 @@ void enemyDamageMessage(int damage)
 void enemyDefeatedMessage()
 {
   lcdOutput("This " + enemyName, "is dead.");
-  delay(2000);
 }
 
 void welcomeMessage()
 {
   lcdOutput("    Welcome!    ", " -------------- ");
-  delay(3000);
+  openingTone();
+  delay(500);
   lcdOutput(" Tilt stick UP, ", " LEFT, or RIGHT ");
   delay(2000);
   lcdOutput("to attack. Tilt", "DOWN to defend.");
@@ -123,7 +122,6 @@ void endGameMessage()
   delay(750);
   lcd.setCursor(0,1);
   lcd.print("      OVER      ");
-  delay(3000);
 }
 
 void endScoreMessage()

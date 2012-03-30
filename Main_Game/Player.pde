@@ -29,14 +29,14 @@ int getPlayerAttack()
   playerAttackDescription(p);
   
     if (p == UP)
-      return 4;
+      return random(0, 6);
     if (p == DOWN) {
       playerDefense = 2;
       return 0; }
     if (p == LEFT)
-      return 2;
+      return random(0, 5);
     if (p == RIGHT)
-      return 2;
+      return random(0, 4);
 }
 
 void playerDefend(int power)
@@ -51,7 +51,10 @@ void playerDefend(int power)
   playerDamageMessage(damage);
   
   if (!playerIsAlive())
+  {
     playerDefeatedMessage();
+    lossTone();
+  }
   else
     playerHealthMessage(playerHealth);
   playerDefense = 0;

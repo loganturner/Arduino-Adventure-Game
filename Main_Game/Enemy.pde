@@ -55,7 +55,10 @@ void enemyDefend(int power)
   enemyDamageMessage(damage);
   
   if (!enemyIsAlive())
+  {
     enemyDefeatedMessage();
+    winTone();
+  }
   enemyDefense = 0;
 }
 
