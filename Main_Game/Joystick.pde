@@ -7,7 +7,7 @@
 // Full RIGHT is x = 1020
 
 const int MID_VALUE = 510;
-const double TILT_THRESHOLD = 0.5;
+const int TILT_THRESHOLD = 250;
 
 const int UP = 0;
 const int DOWN = 1;
@@ -31,35 +31,35 @@ int getJoyStickPosition()
   while (true)
   {
     int highestDirection = 0;
-    double highestPercent = 0.0;
-    double thisPercent = 0.0;
+    int highestAmount = 0;
+    int thisAmount = 0;
     
     for (int i = 0; i < 4; i++)
     {
-      thisPercent = getPercentTilt(i);
-      if (thisPercent > highestPercent)
+      thisAmount = getAmountTilt(i);
+      if (thisAmount > highestAmount)
       {
-        highestPercent = thisPercent;
+        highestAmount = thisAmount;
         highestDirection = i;
       }
     }
-    if (highestPercent > TILT_THRESHOLD)
+    if (highestAmount > TILT_THRESHOLD)
       return highestDirection;
   }
 }
 
-double getPercentTilt(int arrow)
+int getAmountTilt(int arrow)
 {
   if (arrow == UP)
-    return -1 * getPercentTilt(DOWN);
+    return -1 * getAmountTilt(DOWN);
   if (arrow == DOWN)
-    return (analogRead(Y_AXIS) - MID_VALUE) / MID_VALUE;
+    return analogRead(Y_AXIS) - MID_VALUE;
   if (arrow == LEFT)
-    return -1 * getPercentTilt(RIGHT);
+    return -1 * getAmountTilt(RIGHT);
   if (arrow == RIGHT)
-    return (analogRead(X_AXIS) - MID_VALUE) / MID_VALUE;
+    return analogRead(X_AXIS) - MID_VALUE;
   
   else 
-    return 0.0;
+    return 0;
 }
 

@@ -33,7 +33,6 @@ void loop() // New Game
   
   endGameMessage();
   endScoreMessage();
-  getApprovalFromUser();
   lcd.clear();
   delay(2000);
 }

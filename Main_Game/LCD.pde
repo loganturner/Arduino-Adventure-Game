@@ -24,7 +24,7 @@ void startGameMessage()
 
 void findNewEnemyMessage(String name, int health)
 {
-    lcdOutput("Finding ememy...", "");
+    lcdOutput("Finding enemy...", "");
     for(int i = 0; i < 16; i++)
     {
       lcd.setCursor(i, 1);
@@ -123,12 +123,12 @@ void endGameMessage()
   delay(750);
   lcd.setCursor(0,1);
   lcd.print("      OVER      ");
-  delay(1000);
+  delay(3000);
 }
 
 void endScoreMessage()
 {
   lcdOutput("  You defeated  ", "   " + (String)numberOfEnemiesDefeated + " enemies.");
-  delay(2000);
+  delay(5000);
 }
 

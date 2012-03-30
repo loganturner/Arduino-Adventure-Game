@@ -5,7 +5,7 @@ int enemyDefense = 0;
 
 void newRandomEnemy()
 {
-  switch ((int)random(0, 2))
+  switch ((int)random(0, 3))
   {
     case 0:
       enemyName = "Dodo";
@@ -17,6 +17,10 @@ void newRandomEnemy()
       enemyHealth = 5;
       enemyMaxAttack = 5;
       break;
+    case 2:
+      enemyName = "Ghost";
+      enemyHealth = 20;
+      enemyMaxAttack = 7;
   }
   
   findNewEnemyMessage(enemyName, enemyHealth);
