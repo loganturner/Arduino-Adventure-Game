@@ -48,7 +48,7 @@ void enemyDefend(int power)
     
   enemyDamageMessage(damage);
   
-  if (!enemyIsAlive)
+  if (!enemyIsAlive())
     enemyDefeatedMessage();
   enemyDefense = 0;
 }

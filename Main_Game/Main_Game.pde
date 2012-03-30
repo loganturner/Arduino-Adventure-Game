@@ -30,7 +30,7 @@ void loop() // New Game
     ignoreEnemy();
   }
   
-  endGameMessage(numberOfEnemiesDefeated);
+  endGameMessage();
 }
 
 void fightRound()

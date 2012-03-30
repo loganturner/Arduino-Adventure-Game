@@ -22,23 +22,22 @@ void findNewEnemyMessage(String name, int health)
     {
       lcd.setCursor(i, 1);
       lcd.print("*");
-      delay(175);
+      delay(50);
     }
     
     lcdOutput("Found ");
-    delay(1000);
+    delay(500);
     lcd.print("Lv" + (String)health + " " + name);
-    delay(2000);
+    delay(500);
     lcd.setCursor(0,1);
     lcd.print(" Engage?  ");
-    delay(500);
     lcd.print("(Y/N) ");
 }
 
 void enemyIgnoredMessage()
 {
   lcdOutput("  You ignored   ", "    that one.   ");
-  delay(2000);
+  delay(1000);
 }
 
 void playerAttackMessage()
@@ -50,7 +49,7 @@ void playerAttackMessage()
 void enemyDamageMessage(int damage)
 {
   lcdOutput(" The enemy took ", "   " + (String)damage + " damage.   ");
-  delay(2000);
+  delay(1000);
 }
 
 void enemyDefeatedMessage()
@@ -63,22 +62,22 @@ void welcomeMessage()
 {
   lcdOutput("    Welcome!    ", "  ------------  ");
   delay(3000);
-  lcdOutput(" Push stick UP, ", " LEFT, or RIGHT ");
+  lcdOutput(" Tilt stick UP, ", " LEFT, or RIGHT ");
   delay(2000);
-  lcdOutput("to attack. Push", "DOWN to defend.");
+  lcdOutput("to attack. Tilt", "DOWN to defend.");
   delay(3000);
   lcd.clear();
   delay(2000);
 }
 
-void endGameMessage(number)
+void endGameMessage()
 {
-    lcdOutput("   You died...  ", "   GAME OVER    ");
-    delay(2000);
-    lcdOutput("  You defeated  ", "   " + (String)number + " monsters.  ");
-    delay(2000);
-    getApprovalFromUser();
-    lcd.clear();
-    delay(2000);
+  lcdOutput("   You died...  ", "   GAME OVER    ");
+  delay(2000);
+  lcdOutput("  You defeated  ", "   " + (String)numberOfEnemiesDefeated + " monsters.  ");
+  delay(2000);
+  getApprovalFromUser();
+  lcd.clear();
+  delay(2000);
 }
 
