@@ -10,11 +10,12 @@ void setup()
   lcd.init();
   lcd.clear();
   lcd.backlight();
-  lcd.print("Initializing...");
 }
 
 void loop() // New Game
 {
+  startGameMessage();
+  
   newPlayer();
   numberOfEnemiesDefeated = 0;
   

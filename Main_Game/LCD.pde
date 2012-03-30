@@ -15,6 +15,13 @@ void lcdOutput(String firstLine, String secondLine)
   lcd.print(secondLine);
 }
 
+void startGameMessage()
+{
+  lcdOutput("(tilt the stick)");
+  delay(500);
+  getApprovalFromUser();
+}
+
 void findNewEnemyMessage(String name, int health)
 {
     lcdOutput("Finding ememy...", "");
